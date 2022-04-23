@@ -1,6 +1,7 @@
-import Tkinter as tk
+import tkinter as tk
+
 class GameBoard(tk.Frame):
-    def __init__(self, parent, rows=8, columns=8, size=32, color1="white", color2="blue"):
+    def __init__(self, parent, rows=8, columns=8, size=32, color1="#EEEED5", color2="#7D945D"):
         '''size is the size of a square, in pixels'''
 
         self.rows = rows
@@ -22,7 +23,7 @@ class GameBoard(tk.Frame):
         # changes the window size
         self.canvas.bind("<Configure>", self.refresh)
 
-    def addpiece(self, name, image, row=0, column=0):
+    def addpiece(self, name, image, row, column):
         '''Add a piece to the playing board'''
         self.canvas.create_image(0,0, image=image, tags=(name, "piece"), anchor="c")
         self.placepiece(name, row, column)
@@ -58,27 +59,25 @@ class GameBoard(tk.Frame):
 
 # image comes from the silk icon set which is under a Creative Commons
 # license. For more information see http://www.famfamfam.com/lab/icons/silk/
-imagedata = '''
-    R0lGODlhEAAQAOeSAKx7Fqx8F61/G62CILCJKriIHM+HALKNMNCIANKKANOMALuRK7WOVLWPV9eR
+imagedata = '''R0lGODlhEAAQAOeSAKx7Fqx8F61/G62CILCJKriIHM+HALKNMNCIANKKANOMALuRK7WOVLWPV9eR
     ANiSANuXAN2ZAN6aAN+bAOCcAOKeANCjKOShANKnK+imAOyrAN6qSNaxPfCwAOKyJOKyJvKyANW0
-    R/S1APW2APW3APa4APe5APm7APm8APq8AO28Ke29LO2/LO2/L+7BM+7BNO6+Re7CMu7BOe7DNPHA
-    P+/FOO/FO+jGS+/FQO/GO/DHPOjBdfDIPPDJQPDISPDKQPDKRPDIUPHLQ/HLRerMV/HMR/LNSOvH
-    fvLOS/rNP/LPTvLOVe/LdfPRUfPRU/PSU/LPaPPTVPPUVfTUVvLPe/LScPTWWfTXW/TXXPTXX/XY
-    Xu/SkvXZYPfVdfXaY/TYcfXaZPXaZvbWfvTYe/XbbvHWl/bdaPbeavvadffea/bebvffbfbdfPvb
-    e/fgb/Pam/fgcvfgePTbnfbcl/bfivfjdvfjePbemfjelPXeoPjkePbfmvffnvbfofjlgffjkvfh
-    nvjio/nnhvfjovjmlvzlmvrmpvrrmfzpp/zqq/vqr/zssvvvp/vvqfvvuPvvuvvwvfzzwP//////
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////yH+FUNyZWF0ZWQgd2l0aCBU
-    aGUgR0lNUAAh+QQBCgD/ACwAAAAAEAAQAAAIzAD/CRxIsKDBfydMlBhxcGAKNIkgPTLUpcPBJIUa
-    +VEThswfPDQKokB0yE4aMFiiOPnCJ8PAE20Y6VnTQMsUBkWAjKFyQaCJRYLcmOFipYmRHzV89Kkg
-    kESkOme8XHmCREiOGC/2TBAowhGcAyGkKBnCwwKAFnciCAShKA4RAhyK9MAQwIMMOQ8EdhBDKMuN
-    BQMEFPigAsoRBQM1BGLjRIiOGSxWBCmToCCMOXSW2HCBo8qWDQcvMMkzCNCbHQga/qMgAYIDBQZU
-    yxYYEAA7
-'''
+	    R/S1APW2APW3APa4APe5APm7APm8APq8AO28Ke29LO2/LO2/L+7BM+7BNO6+Re7CMu7BOe7DNPHA
+		    P+/FOO/FO+jGS+/FQO/GO/DHPOjBdfDIPPDJQPDISPDKQPDKRPDIUPHLQ/HLRerMV/HMR/LNSOvH
+			    fvLOS/rNP/LPTvLOVe/LdfPRUfPRU/PSU/LPaPPTVPPUVfTUVvLPe/LScPTWWfTXW/TXXPTXX/XY
+				    Xu/SkvXZYPfVdfXaY/TYcfXaZPXaZvbWfvTYe/XbbvHWl/bdaPbeavvadffea/bebvffbfbdfPvb
+					    e/fgb/Pam/fgcvfgePTbnfbcl/bfivfjdvfjePbemfjelPXeoPjkePbfmvffnvbfofjlgffjkvfh
+						    nvjio/nnhvfjovjmlvzlmvrmpvrrmfzpp/zqq/vqr/zssvvvp/vvqfvvuPvvuvvwvfzzwP//////
+							    ////////////////////////////////////////////////////////////////////////////
+								    ////////////////////////////////////////////////////////////////////////////
+									    ////////////////////////////////////////////////////////////////////////////
+										    ////////////////////////////////////////////////////////////////////////////
+											    ////////////////////////////////////////////////////////////////////////////
+												    /////////////////////////////////////////////////////yH+FUNyZWF0ZWQgd2l0aCBU
+													    aGUgR0lNUAAh+QQBCgD/ACwAAAAAEAAQAAAIzAD/CRxIsKDBfydMlBhxcGAKNIkgPTLUpcPBJIUa
+														    +VEThswfPDQKokB0yE4aMFiiOPnCJ8PAE20Y6VnTQMsUBkWAjKFyQaCJRYLcmOFipYmRHzV89Kkg
+															    kESkOme8XHmCREiOGC/2TBAowhGcAyGkKBnCwwKAFnciCAShKA4RAhyK9MAQwIMMOQ8EdhBDKMuN
+																    BQMEFPigAsoRBQM1BGLjRIiOGSxWBCmToCCMOXSW2HCBo8qWDQcvMMkzCNCbHQga/qMgAYIDBQZU
+																	    yxYYEAA7'''
 
 
 
@@ -87,5 +86,5 @@ if __name__ == "__main__":
     board = GameBoard(root)
     board.pack(side="top", fill="both", expand="true", padx=4, pady=4)
     player1 = tk.PhotoImage(data=imagedata)
-    board.addpiece("player1", player1, 0,0)
+    board.addpiece("player1", player1, 2,2)
     root.mainloop()
